@@ -1,0 +1,8 @@
+cd robot_server
+
+pip3 install flask
+
+ubuntu main button > Startup Applications Preferences
+> Add > Name: robot_server
+> Command: > Browser > \robot_server\server_start.sh > Add
+> Close

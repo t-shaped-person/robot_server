@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OMOROBOT</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h2>Bringup Robot</h2>
+    <button id="bringup" class="btn_style_1">bringup</button>
+    <button id="cancel_br" class="btn_style_1" disabled>cancel</button>
+    <hr>
+    <h2>For Mapping</h2>
+    <button id="teleop" class="btn_style_1">teleop</button>
+    <button id="cancel_te" class="btn_style_1" disabled>cancel</button>
+    <br>
+    <button id="cartographer" class="btn_style_1">cartographer</button>
+    <button id="cancel_ca" class="btn_style_1" disabled>cancel</button>
+    <br>
+    <button id="cartographer_rviz" class="btn_style_1">rviz</button>
+    <button id="cancel_cr" class="btn_style_1" disabled>cancel</button>
+    <br>
+    <button id="map" class="btn_style_1">save_map</button>
+    <hr>
+    <h2>For Navigation</h2>
+    <button id="navigation" class="btn_style_1">navigation</button>
+    <button id="cancel_na" class="btn_style_1" disabled>cancel</button>
+    <br>
+    <button id="navigation_rviz" class="btn_style_1">rviz</button>
+    <button id="cancel_nr" class="btn_style_1" disabled>cancel</button>
+    <hr>
+    <p id="status"></p>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>
