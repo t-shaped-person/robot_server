@@ -18,6 +18,8 @@ from flask import Flask, jsonify, redirect, render_template, request, url_for
 
 app = Flask(__name__)
 
+bringup_process = None
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -25,11 +27,10 @@ def home():
 @app.route('/launch_bringup', methods=['POST'])
 def launch_bringup():
     try:
-        subprocess.Popen([
-            "gnome-terminal", "--",
-            "bash", "-c",
-            "echo $$ > /tmp/bringup.pid; ros2 launch omorobot_bringup bringup_launch.py; exec bash"
-        ])
+        global bringup_process
+        bringup_process = subprocess.Popen([
+            "ros2", "launch", "omorobot_bringup", "bringup_launch.py"
+        ], start_new_session=True)
         return "bringup successfully", 200
     except Exception as e:
         return str(e), 500
@@ -37,10 +38,8 @@ def launch_bringup():
 @app.route('/cancel_bringup', methods=['POST'])
 def cancel_bringup():
     try:
-        with open('/tmp/bringup.pid', 'r') as f:
-            pid = int(f.read().strip())
-        os.killpg(os.getpgid(pid), signal.SIGTERM)
-        os.remove('/tmp/bringup.pid')
+        global bringup_process
+        os.killpg(os.getpgid(bringup_process.pid), signal.SIGTERM)
         return "bringup terminated", 200
     except Exception as e:
         return str(e), 400
@@ -71,7 +70,7 @@ def cancel_cartographer():
 @app.route('/save_map', methods=['POST'])
 def save_map():
     try:
-        proc = subprocess.Popen([
+        subprocess.Popen([
             "gnome-terminal", "--",
             "bash", "-c",
             "ros2 run nav2_map_server map_saver_cli -f ~/map; echo 'close in 5sec'; sleep 1; echo 'close in 4sec'; sleep 1; echo 'close in 3sec'; sleep 1; echo 'close in 2sec'; sleep 1; echo 'close in 1sec'; sleep 1; exit"
@@ -103,7 +102,7 @@ def cancel_navigation():
     except Exception as e:
         return str(e), 400
 
-server_ip = 'http://192.168.1.201'
+server_ip = 'http://192.168.1.119'
 
 @app.route('/launch_teleop', methods=['POST'])
 def launch_teleop():
