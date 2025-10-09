@@ -11,7 +11,7 @@ export ROBOT_MODEL="R2MINI"
 export MOTOR_MODEL="NEW"
 ```
 
-## step 3: Check `robot_app.py` and modify model names if necessary
+## step 3: Check `robot_app.py` and modify remote_server_ip
 Edit the following line in `robot_app.py`:
 ```
 remote_server_ip = 'http://<remote_server_ip>'
