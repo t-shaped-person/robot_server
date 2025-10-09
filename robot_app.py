@@ -102,31 +102,31 @@ def cancel_navigation():
     except Exception as e:
         return str(e), 400
 
-server_ip = 'http://192.168.1.119'
+remote_server_ip = 'http://192.168.1.148'
 
 @app.route('/launch_teleop', methods=['POST'])
 def launch_teleop():
-    requests.post(server_ip + ":9090/launch_teleop")
+    requests.post(remote_server_ip + ":9090/launch_teleop")
 
 @app.route('/cancel_teleop', methods=['POST'])
 def cancel_teleop():
-    requests.post(server_ip + ":9090/cancel_teleop")
+    requests.post(remote_server_ip + ":9090/cancel_teleop")
 
 @app.route('/launch_cartographer_rviz', methods=['POST'])
 def launch_cartographer_rviz():
-    requests.post(server_ip + ":9090/launch_cartographer_rviz")
+    requests.post(remote_server_ip + ":9090/launch_cartographer_rviz")
 
 @app.route('/cancel_cartographer_rviz', methods=['POST'])
 def cancel_cartographer_rviz():
-    requests.post(server_ip + ":9090/cancel_cartographer_rviz")
+    requests.post(remote_server_ip + ":9090/cancel_cartographer_rviz")
 
 @app.route('/launch_navigation_rviz', methods=['POST'])
 def launch_navigation_rviz():
-    requests.post(server_ip + ":9090/launch_navigation_rviz")
+    requests.post(remote_server_ip + ":9090/launch_navigation_rviz")
 
 @app.route('/cancel_navigation_rviz', methods=['POST'])
 def cancel_navigation_rviz():
-    requests.post(server_ip + ":9090/cancel_navigation_rviz")
+    requests.post(remote_server_ip + ":9090/cancel_navigation_rviz")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
