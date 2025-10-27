@@ -1,9 +1,12 @@
 # Robot Server Installation Instructions
 
-## Step 1: Install Flask
+## Step 1: Git clone
+`git clone https://github.com/t-shaped-person/robot_server.git`
+
+## Step 2: Install Flask
 `pip3 install flask`
 
-## step 2: Check `server_start.sh` and modify model names if necessary
+## Step 3: Check `server_start.sh` and modify model names if necessary
 Edit the following lines in `server_start.sh`:
 ```
 export LIDAR_MODEL="TMINIPRO"
@@ -11,7 +14,7 @@ export ROBOT_MODEL="R2MINI"
 export MOTOR_MODEL="NEW"
 ```
 
-## step 3: Check `robot_app.py` and modify remote_server_ip
+## Step 4: Check `robot_app.py` and modify remote_server_ip
 Edit the following line in `robot_app.py`:
 ```
 remote_server_ip = 'http://<remote_server_ip>'
@@ -19,7 +22,7 @@ Example:
 remote_server_ip = 'http://192.168.1.148'
 ```
 
-## step 4: Setup Startup Applications
+## Step 5: Setup Startup Applications
 1. Open Startup Applications Preferences
     - ubuntu main button -> Startup Applications Preferences
 2. Click Add:
@@ -27,7 +30,7 @@ remote_server_ip = 'http://192.168.1.148'
     - Command: > Browser > \robot_server\server_start.sh
 3. Click Add, then Close.
 
-## step 5: Reboot and verify the server
+## Step 6: Reboot and verify the server
 After reboot, check if remote_server runs properly (it should open a gnome-terminal).  
 You should see output like:
 ```
